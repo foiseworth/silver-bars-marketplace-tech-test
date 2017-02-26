@@ -1,0 +1,25 @@
+{
+  "name": "silver-bars-marketplace",
+  "version": "1.0.0",
+  "description": "Credit Suisse tech test for Gruffalo vacancy.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive ./**/*tests.js",
+    "lint": "eslint ."
+  },
+  "author": "Andrew Herrington",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "ramda": "^0.23.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "sinon": "^1.17.7",
+    "code": "^4.0.0",
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0"
+  }
+}
