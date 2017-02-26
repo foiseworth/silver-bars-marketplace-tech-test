@@ -2,6 +2,7 @@
   "name": "silver-bars-marketplace",
   "version": "1.0.0",
   "description": "Credit Suisse tech test for Gruffalo vacancy.",
+  "repository": "ssh://git@bitbucket.org/aboutandrew/credit-suisse-gruffalo-tech-test.git",
   "main": "index.js",
   "scripts": {
     "test": "mocha --recursive ./**/*tests.js",
