@@ -4,6 +4,7 @@ module.exports = {
         "import"
     ],
     "rules": {
-        "import/no-extraneous-dependencies": 0
+        "import/no-extraneous-dependencies": 0,
+        "comma-dangle": 0
     }
 };
