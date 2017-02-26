@@ -7,7 +7,8 @@
   "scripts": {
     "test": "mocha --recursive ./**/*tests.js",
     "lint": "eslint .",
-    "start": "node index.js"
+    "start": "node index.js",
+    "zip": "zip -FSr silver-bars-marketplace-andrew-herrington.zip . --exclude=node_modules* --exclude=instructions.pdf --exclude=.git*"
   },
   "author": "Andrew Herrington",
   "license": "ISC",
