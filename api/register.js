@@ -14,7 +14,7 @@ function register(storage) {
   return function registerRoute(req, res) {
     const registerData = R.pick(['userId', 'orderQuantity', 'pricePerKg', 'orderType'], req.body);
     if (!registerValidator(registerData)) {
-      res.status(403).send(API_ERROR);
+      res.status(400).send(API_ERROR);
       return;
     }
 

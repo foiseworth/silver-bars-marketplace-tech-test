@@ -31,9 +31,9 @@ describe('Cancel api', () => {
       cancel(storageStub)(reqStub, resStub);
     });
 
-    it('should send a 403 status code', () => {
+    it('should send a 400 status code', () => {
       expect(resStub.status.calledOnce).to.be.true();
-      expect(resStub.status.calledWithExactly(403)).to.be.true();
+      expect(resStub.status.calledWithExactly(400)).to.be.true();
     });
 
     it('should send a api error', () => {

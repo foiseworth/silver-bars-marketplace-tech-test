@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const app = require('express')();
+const storage = require('./storage');
 
 app.use(bodyParser.json());
 
@@ -8,11 +9,9 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/register', require('./api/register')());
-
-// app.post('/cancel', require('./api/cancel'));
-
-// app.get('/summary', require('./api/summary'));
+app.post('/register', require('./api/register')(storage));
+app.post('/cancel', require('./api/cancel')(storage));
+app.get('/summary', require('./api/summary')(storage));
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

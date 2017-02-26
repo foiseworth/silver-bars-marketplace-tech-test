@@ -8,7 +8,7 @@ function cancel(storage) {
     const orderId = req.body.id;
 
     if (!R.is(String, orderId)) {
-      res.status(403).send(API_ERROR);
+      res.status(400).send(API_ERROR);
       return;
     }
 

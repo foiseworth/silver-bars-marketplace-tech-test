@@ -1,10 +1,11 @@
 // mock database
+const R = require('ramda');
 
-let nextId = 0;
+let nextId = 1;
 const orders = {};
 
 function add(order) {
-  orders[nextId] = { id: nextId, ...order };
+  orders[nextId] = R.merge({ id: nextId }, order);
   nextId += 1;
 }
 
@@ -16,7 +17,7 @@ function list() {
   return orders;
 }
 
-module.export = {
+module.exports = {
   add,
   remove,
   list,
