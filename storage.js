@@ -5,7 +5,7 @@ let nextId = 1;
 const orders = {};
 
 function add(order) {
-  orders[nextId] = R.merge({ id: nextId }, order);
+  orders[nextId] = R.merge({ id: String(nextId) }, order);
   nextId += 1;
 }
 
