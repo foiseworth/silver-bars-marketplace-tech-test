@@ -1,6 +1,8 @@
 # Gruffalo Silver Bars
 #### by Andrew Herrington
 
+N.B. You will see that I have made use of [Ramda](http://ramdajs.com/) a functional javascript library. Whilst I'm more than happy to write more procedural code, I have written this project in a more functional style. Ramda is a powerful library that can be slightly obtuse if you have not used it before. However it allows you to write expressive and concise code.
+
 ## Installation
 `npm install`
 
