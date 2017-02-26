@@ -8,7 +8,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post('/register', require('./api/register'));
+app.post('/register', require('./api/register')());
 
 // app.post('/cancel', require('./api/cancel'));
 

@@ -1,7 +1,7 @@
 /* eslint-env mocha */
-const sinon = require('sinon');
 const register = require('./register');
-const expect = require('code').expect;
+const { expect } = require('code');
+const { createReqStub, createResStub, createStorageStub } = require('../test-helpers');
 
 describe('Register api', () => {
   let resStub;
@@ -17,26 +17,21 @@ describe('Register api', () => {
       orderType: 'BUY',
     };
 
-    resStub = {
-      send: sinon.stub(),
-      status: sinon.stub(),
-    };
-    resStub.send.returns(resStub);
-    resStub.status.returns(resStub);
+    resStub = createResStub();
+    reqStub = createReqStub(order);
+    storageStub = createStorageStub();
+  });
 
-    reqStub = {
-      body: order,
-    };
-
-    storageStub = {
-      add: sinon.stub(),
-    };
+  context('when a storage object is not passed to the route creator', () => {
+    it('should thrown an error', () => {
+      expect(register).to.throw();
+    });
   });
 
   context('when the request does not have a user id', () => {
     beforeEach(() => {
       delete reqStub.body.userId;
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 403 status code', () => {
@@ -53,7 +48,7 @@ describe('Register api', () => {
   context('when the request does not have a order quantity', () => {
     beforeEach(() => {
       delete reqStub.body.orderQuantity;
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 403 status code', () => {
@@ -70,7 +65,7 @@ describe('Register api', () => {
   context('when the request does not have a price per kg', () => {
     beforeEach(() => {
       delete reqStub.body.pricePerKg;
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 403 status code', () => {
@@ -87,7 +82,7 @@ describe('Register api', () => {
   context('when the request does not have a order type', () => {
     beforeEach(() => {
       delete reqStub.body.orderType;
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 403 status code', () => {
@@ -104,7 +99,7 @@ describe('Register api', () => {
   context('when the request does not have an order type of Buy or Sell', () => {
     beforeEach(() => {
       reqStub.body.orderType = 'foo';
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 403 status code', () => {
@@ -120,7 +115,7 @@ describe('Register api', () => {
 
   context('when the request has an order type of BUY', () => {
     beforeEach(() => {
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 200 status code', () => {
@@ -142,7 +137,7 @@ describe('Register api', () => {
   context('when the request has an order type of SELL', () => {
     beforeEach(() => {
       reqStub.body.orderType = 'SELL';
-      register(storageStub, reqStub, resStub);
+      register(storageStub)(reqStub, resStub);
     });
 
     it('should send a 200 status code', () => {

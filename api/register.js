@@ -8,15 +8,19 @@ const registerValidator = R.where({
   orderType: R.either(R.equals(ORDER_TYPES.BUY), R.equals(ORDER_TYPES.SELL)),
 });
 
-function register(storage, req, res) {
-  const registerData = R.pick(['userId', 'orderQuantity', 'pricePerKg', 'orderType'], req.body);
-  if (!registerValidator(registerData)) {
-    res.status(403).send(API_ERROR);
-    return;
-  }
+function register(storage) {
+  if (!storage) throw new Error('Register route requires storage to persist orders');
 
-  storage.add(registerData);
-  res.status(200).send(API_SUCCESS);
+  return function registerRoute(req, res) {
+    const registerData = R.pick(['userId', 'orderQuantity', 'pricePerKg', 'orderType'], req.body);
+    if (!registerValidator(registerData)) {
+      res.status(403).send(API_ERROR);
+      return;
+    }
+
+    storage.add(registerData);
+    res.status(200).send(API_SUCCESS);
+  };
 }
 
 module.exports = register;
